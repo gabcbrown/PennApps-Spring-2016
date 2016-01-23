@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/p5.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/addons/p5.dom.js"></script>
+  <script type="text/javascript">
+  var text;		// variable for the text div you'll create
+  var socket = new WebSocket("ws://localhost:8081");
+  var interval_index = 0;
+  var num_images = 10;
+  var images = new Array();
+  images = ["SWemojipic.jpg","starwarspic2.jpg","starwarspic3.jpg","Kylo1.jpg","Rey1.jpg","Kylo2.jpg","Rey2.png","Kylo3.jpg","Rey3.jpg","end.png"];
+
+  function setup() {
+    // The socket connection needs two event listeners:
+    socket.onopen = openSocket;
+    socket.onmessage = showData;
+
+    var testResult;
+
+    // make a new div and position it at 10, 10:
+    text = createDiv("Sensor reading: (first time)");
+    text.position(10,10);
+  }
+
+  function openSocket() {
+    text.html("Socket open");
+    socket.send("Hello server");
+  }
+
+  function changeImage()
+{
+  document.getElementById("img").src=images[int(interval_index) ];
+
+  //Get highest of BPM array
+  //Clear BPM array
+
+   if (interval_index == num_images) {
+     //break;
+     //Show winner
+     console.log("End of program: display winner/tinder match");
+
+  }
+
+}
+
+  /*
+  showData(), below, will get called whenever there is new Data
+  from the server. So there's no need for a draw() function:
+  */
+  function showData(result) {
+
+    // when the server returns, show the result in the div:
+   // var json_data = JSON.parse(result.data); 
+   // text.html("Sensor reading:" + json_data.data);
+   if (interval_index < (num_images-1)){ 
+    var values = result.data.split(',');
+   // interval_index = values[1];
+
+    text.html("Sensor reading: " + values[0]);
+    console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index);
+
+    interval_index++;
+    changeImage();
+   // xPos = int(result.data);        // convert result to an integer
+    xPos = 10;
+    text.position(xPos, 10);        // position the text
+   }
+   else {
+    // we're done. show final
+    var values = result.data.split(',');
+    interval_index = values[1];
+    var max_index = values[0];
+    document.getElementById("img").src=images[max_index];
+
+   }
+   
+  }
+</script>
+</head>
+<body>
+ <img id="img" src="SWemojipic.jpg"> 
+</body>
+</html>

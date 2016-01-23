@@ -1,84 +1,144 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/p5.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/addons/p5.dom.js"></script>
-  <script type="text/javascript">
-  var text;		// variable for the text div you'll create
-  var socket = new WebSocket("ws://localhost:8081");
-  var interval_index = 0;
-  var num_images = 10;
-  var images = new Array();
-  images = ["SWemojipic.jpg","starwarspic2.jpg","starwarspic3.jpg","Kylo1.jpg","Rey1.jpg","Kylo2.jpg","Rey2.png","Kylo3.jpg","Rey3.jpg","end.png"];
+b<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 
-  function setup() {
-    // The socket connection needs two event listeners:
-    socket.onopen = openSocket;
-    socket.onmessage = showData;
+    <!-- HEADER this loads the css stylesheets -->
+    <head>
 
-    var testResult;
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    // make a new div and position it at 10, 10:
-    text = createDiv("Sensor reading: (first time)");
-    text.position(10,10);
-  }
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/custom.css.scss">
 
-  function openSocket() {
-    text.html("Socket open");
-    socket.send("Hello server");
-  }
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        
+        <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/p5.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/addons/p5.dom.js"></script>
+        <script type="text/javascript">
+        var text;   // variable for the text div you'll create
+        var socket = new WebSocket("ws://localhost:8081");
+        var interval_index = 0;
+        var num_images = 10;
+        var images = new Array();
+        images = ["SWemojipic.jpg","starwarspic2.jpg","starwarspic3.jpg","Kylo1.jpg","Rey1.jpg","Kylo2.jpg","Rey2.png","Kylo3.jpg","Rey3.jpg","end.png"];
 
-  function changeImage()
-{
-  document.getElementById("img").src=images[int(interval_index) ];
+        function setup() {
+          // The socket connection needs two event listeners:
+          socket.onopen = openSocket;
+          socket.onmessage = showData;
 
-  //Get highest of BPM array
-  //Clear BPM array
+          var testResult;
 
-   if (interval_index == num_images) {
-     //break;
-     //Show winner
-     console.log("End of program: display winner/tinder match");
+          // make a new div and position it at 10, 10:
+          text = createDiv("Sensor reading: (first time)");
+          text.position(10,10);
+        }
 
-  }
+        function openSocket() {
+          text.html("Socket open");
+          socket.send("Hello server");
+        }
 
-}
+        function changeImage()
+      {
+        document.getElementById("img").src=images[int(interval_index) ];
 
-  /*
-  showData(), below, will get called whenever there is new Data
-  from the server. So there's no need for a draw() function:
-  */
-  function showData(result) {
+        //Get highest of BPM array
+        //Clear BPM array
 
-    // when the server returns, show the result in the div:
-   // var json_data = JSON.parse(result.data); 
-   // text.html("Sensor reading:" + json_data.data);
-   if (interval_index < (num_images-1)){ 
-    var values = result.data.split(',');
-   // interval_index = values[1];
+         if (interval_index == num_images) {
+           //break;
+           //Show winner
+           console.log("End of program: display winner/tinder match");
 
-    text.html("Sensor reading: " + values[0]);
-    console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index);
+        }
 
-    interval_index++;
-    changeImage();
-   // xPos = int(result.data);        // convert result to an integer
-    xPos = 10;
-    text.position(xPos, 10);        // position the text
-   }
-   else {
-    // we're done. show final
-    var values = result.data.split(',');
-    interval_index = values[1];
-    var max_index = values[0];
-    document.getElementById("img").src=images[max_index];
+      }
 
-   }
-   
-  }
-</script>
-</head>
-<body>
- <img id="img" src="SWemojipic.jpg"> 
-</body>
+        /*
+        showData(), below, will get called whenever there is new Data
+        from the server. So there's no need for a draw() function:
+        */
+        function showData(result) {
+
+          // when the server returns, show the result in the div:
+         // var json_data = JSON.parse(result.data); 
+         // text.html("Sensor reading:" + json_data.data);
+         if (interval_index < (num_images-1)){ 
+          var values = result.data.split(',');
+         // interval_index = values[1];
+
+          text.html("Sensor reading: " + values[0]);
+          console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index);
+
+          interval_index++;
+          changeImage();
+         // xPos = int(result.data);        // convert result to an integer
+          xPos = 10;
+          text.position(xPos, 10);        // position the text
+         }
+         else {
+          // we're done. show final
+          var values = result.data.split(',');
+          interval_index = values[1];
+          var max_index = values[0];
+          document.getElementById("img").src=images[max_index];
+
+         }
+         
+        }
+      </script>
+    </head>
+    <body>
+
+    <!-- NAVBAR-->
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-header" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" id="title" href="#" style="display: none">THE FORCE AWAKENS ;)</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse"></div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- START message (will be hidden for slideshow) -->
+    <div id="intro" class="jumbotron center">
+      <div class="container">
+        <h1>THE FORCE AWAKENS ;)</h1>
+        <p>Which STAR WARS character should be your next Tinder date? Find out here.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" onclick=to_slideshow() role="button">START</a></p>
+      </div>
+    </div>
+
+   <!-- SLIDESHOW (initially hidden) -->
+   <div id="slideshow" class="container center" style="display: none;">
+      <!--slidshow-->
+      <img id="img" src="SWemojipic.jpg"> 
+      <p><a class="btn btn-primary btn-lg" href="#" onclick=to_start() role="button">BACK TO START</a></p>
+   </div>
+
+   <!-- I DONT KNOW WHAT THIS IS -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+    </body>
 </html>
