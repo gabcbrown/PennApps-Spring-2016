@@ -1,9 +1,17 @@
-// this function switches the visibility from initial page to the quiz slideshow
-document.getElementById("slideshow").style.display = 'none'
+// this function switches the visibility from the start page to the slideshow
+function to_slideshow() {
+  var a = document.getElementById("intro");
+  var b = document.getElementById("slideshow");
 
-function to_quiz() {
-  var s = document.getElementById("slideshow");
-  var i = document.getElementById("intro");
-  i.style.display = 'none';
-  s.style.display = 'block';
+  a.style.display = "none"
+  b.style.display = "block"
+}
+
+// this function switches the visibility from the slideshow to the start page
+function to_start() {
+  var a = document.getElementById("intro");
+  var b = document.getElementById("slideshow");
+
+  a.style.display = "block"
+  b.style.display = "none"
 }
