@@ -21,6 +21,20 @@ var SERVER_PORT = 8081;                 // port number for the webSocket server
 var wss = new WebSocketServer({port: SERVER_PORT}); // the webSocket server
 var connections = new Array;            // list of connections to the server
 
+// declare array stuff
+var updating_array = [];
+var max_BPs = [];  // total pictures = 8; change as necessary
+var max_of_array;
+var lastTime = 0;
+var interval_index = 0; // goes up to 8 (same as max_BPs final size)
+var num_images = 9;
+
+function reset(){
+  max_of_array = Math.max.apply(Math, updating_array);
+  max_BPs.push(max_of_array);
+  updating_array = [];
+}
+
 // configure the serial port:
 SerialPort = serialport.SerialPort,             // make a local instance of serialport
     portName = "/dev/cu.usbmodem1411",                 // get serial port name from the command line
@@ -66,11 +80,43 @@ function showPortOpen() {
 function sendSerialData(data) {
   // if there are webSocket connections, send the serial data
   // to all of them:
-  console.log('to the terminal: ' + Number(data));
-  if (connections.length > 0) {
+  //updating_array.push(parseInt(data));   
+  updating_array.push(Number(data));
+
+
+  //console.log('to the terminal: ' + Number(data));
+  console.log("Full array: " + updating_array + "\n");
+
+  if ( Math.floor(new Date() - lastTime) < 5000 ) {
+     // do nothing
+    } else {
+      // update
+      console.log("Full array: " + updating_array + "\n");
+      reset();
+      
+      console.log("Max_BPs array: " + max_BPs + "\n");
+
+      if (connections.length > 0) {
+        var max_string = max_BPs[interval_index].toString();
+        var total_string = max_string + "," + interval_index.toString();
+        broadcast(total_string);
+      }
+
+      lastTime =  new Date();
+      interval_index++;
+
+      if (interval_index == num_images){
+        var max_index = max_BPs.indexOf(Math.max.apply(Math, max_BPs));
+        broadcast(max_index.toString() + "," + interval_index);
+        myPort.close();
+      }
+    }
+
+  //if (connections.length > 0) {
    // broadcast(data);
-   broadcast(Number(data).toString());
-  }
+   
+   //broadcast(Number(data).toString());
+  //}
 }
 
 function showPortClose() {
