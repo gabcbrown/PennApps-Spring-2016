@@ -33,9 +33,9 @@ b<!doctype html>
         var text;   // variable for the text div you'll create
         var socket = new WebSocket("ws://localhost:8081");
         var interval_index = 0;
-        var num_images = 10;
+        var num_images = 8;
         var images = new Array();
-        images = ["SWemojipic.jpg","starwarspic2.jpg","starwarspic3.jpg","Kylo1.jpg","Rey1.jpg","Kylo2.jpg","Rey2.png","Kylo3.jpg","Rey3.jpg","end.png"];
+        images = ["Rey3.jpg","Kylo2.jpg","bb8.jpg","Finn.jpg","maz.jpg","Kylo3.jpg","stormtrooper.jpg","Rey4.jpg"];
 
         function setup() {
           // The socket connection needs two event listeners:
@@ -128,7 +128,7 @@ b<!doctype html>
    <!-- SLIDESHOW (initially hidden) -->
    <div id="slideshow" class="container center" style="display: none;">
       <!--slidshow-->
-      <img id="img" src="SWemojipic.jpg"> 
+      <img id="img" src="Rey3.jpg"> 
       <p><a class="btn btn-primary btn-lg" href="#" onclick=to_start() role="button">BACK TO START</a></p>
    </div>
 
