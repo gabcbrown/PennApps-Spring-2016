@@ -86,9 +86,11 @@
           text.html("Sensor reading: " + values[0]);
 
 
+          console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index + " for photo w. name " + images[interval_index]);
+
           interval_index++;
 
-          console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index + " for photo w. name " + image[interval_index]);
+          
           changeImage();
          // xPos = int(result.data);        // convert result to an integer
           xPos = 10;
@@ -100,6 +102,7 @@
           console.log("We're done - show the final winner");
           interval_index = values[1];
           var max_index = values[0];
+
           document.getElementById("img").src=images[max_index];
 
          }
