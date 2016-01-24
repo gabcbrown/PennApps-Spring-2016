@@ -87,9 +87,7 @@ function sendSerialData(data) {
   //console.log('to the terminal: ' + Number(data));
   console.log("Full array: " + updating_array + "\n");
 
-  if ( Math.floor(new Date() - lastTime) < 5000 ) {
-     // do nothing
-    } else {
+  if (updating_array.length == 4){
       // update
       console.log("Full array: " + updating_array + "\n");
       reset();
@@ -102,7 +100,6 @@ function sendSerialData(data) {
         broadcast(total_string);
       }
 
-      lastTime =  new Date();
       interval_index++;
 
       if (interval_index == num_images){
@@ -110,6 +107,9 @@ function sendSerialData(data) {
         broadcast(max_index.toString() + "," + interval_index);
         myPort.close();
       }
+    } 
+    else {
+      // do nothing
     }
 
   //if (connections.length > 0) {
