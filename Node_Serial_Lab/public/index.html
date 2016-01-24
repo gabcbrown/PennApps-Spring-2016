@@ -33,9 +33,9 @@
         var text;   // variable for the text div you'll create
         var socket = new WebSocket("ws://localhost:8081");
         var interval_index = 0;
-        var num_images = 8;
+        var num_images = 9;
         var images = new Array();
-        images = ["Rey3.jpg","Kylo2.jpg","bb8.jpg","Finn.jpg","maz.jpg","Kylo3.jpg","stormtrooper.jpg","Rey4.jpg"];
+        images = ["Rey3.jpg","Kylo2.jpg","bb8.jpg","Finn.jpg","maz.jpg","Kylo3.jpg","stormtrooper.jpg","Rey4.jpg","loading1.gif"];
 
         function setup() {
           // The socket connection needs two event listeners:
@@ -84,9 +84,11 @@
          // interval_index = values[1];
 
           text.html("Sensor reading: " + values[0]);
-          console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index);
+
 
           interval_index++;
+
+          console.log("Post text.html call; Sensor reading: " + values[0] + " and interval_index = " + interval_index + " for photo w. name " + image[interval_index]);
           changeImage();
          // xPos = int(result.data);        // convert result to an integer
           xPos = 10;
@@ -95,6 +97,7 @@
          else {
           // we're done. show final
           var values = result.data.split(',');
+          console.log("We're done - show the final winner");
           interval_index = values[1];
           var max_index = values[0];
           document.getElementById("img").src=images[max_index];
