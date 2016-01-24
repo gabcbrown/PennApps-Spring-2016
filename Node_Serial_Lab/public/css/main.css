@@ -3,20 +3,80 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+   @import url(https://fonts.googleapis.com/css?family=Jura);
 
+   @font-face {
+     font-family:"STARWARS";
+     src:url("../fonts/STARWARS.eot");
+     src:url("../fonts/STARWARS.eot?#iefix") format('embedded-opentype'),url("../fonts/STARWARS.woff") format("woff"),url("../fonts/STARWARS.ttf") format("truetype"),url("../fonts/STARWARS.svg#STARWARS") format("svg");
+     font-weight:normal;
+     font-style:normal;
+   }
 
+   /* star wars yellow #E5B13A */
+   /* universal */
 
+   .center {
+     text-align: center;
+   }
 
+   .btn {
+     background-color: #222;
+     border-color: #222;
+     background-image: none;
+     color: #E5B13A;
+     font-family: "STARWARS";
+   }
+   .btn:hover {
+     background-color: #595959;
+     color: #E5B13A;
+   }
 
+   .btn-primary {
+     background-color: #222;
+     border-color: #222;
+     background-image: none;
+     color: #E5B13A;
+     font-family: "STARWARS";
+   }
+   .btn-primary:hover {
+     background-color: #595959;
+     color: #E5B13A;
+   }
 
+   .btn-lg {
+     background-color: #222;
+     border-color: #222;
+     background-image: none;
+     color: #E5B13A;
+     font-family: "STARWARS";
+   }
+   .btn-lg:hover {
+     background-color: #595959;
+     color: #E5B13A;
+   }
 
+   /* navbar */
+   .jumbotron {
+     padding: 10px;
+   }
 
+   .navbar-header {
+     text-align: center;
+     font-family: "STARWARS";
+     color: #E5B13A;
+   }
 
+   #title {
+     color: #E5B13A;
+   }
 
+   /* body */
+   h1 {
+     font-family: "STARWARS";
+   }
 
-
-
-
-
-
-
+   p {
+     font-family: 'Jura', sans-serif;
+     padding: 10px 70px;
+   }

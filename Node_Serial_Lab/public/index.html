@@ -21,12 +21,11 @@
                 padding-bottom: 20px;
             }
         </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/custom.css.scss">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        
+
         <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/p5.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/addons/p5.dom.js"></script>
         <script type="text/javascript">
@@ -77,9 +76,9 @@
         function showData(result) {
 
           // when the server returns, show the result in the div:
-         // var json_data = JSON.parse(result.data); 
+         // var json_data = JSON.parse(result.data);
          // text.html("Sensor reading:" + json_data.data);
-         if (interval_index < (num_images-1)){ 
+         if (interval_index < (num_images-1)){
           var values = result.data.split(',');
          // interval_index = values[1];
 
@@ -90,7 +89,7 @@
 
           interval_index++;
 
-          
+
           changeImage();
          // xPos = int(result.data);        // convert result to an integer
           xPos = 10;
@@ -106,7 +105,7 @@
           document.getElementById("img").src=images[max_index];
 
          }
-         
+
         }
       </script>
     </head>
@@ -135,7 +134,7 @@
    <!-- SLIDESHOW (initially hidden) -->
    <div id="slideshow" class="container center" style="display: none;">
       <!--slidshow-->
-      <img id="img" src="Rey3.jpg" style="width:300px;height:auto;"> 
+      <img id="img" src="Rey3.jpg" style="width:300px;height:auto;">
       <p><a class="btn btn-primary btn-lg" href="#" onclick=to_start() role="button">BACK TO START</a></p>
    </div>
 
