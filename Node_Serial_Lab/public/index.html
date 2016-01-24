@@ -1,4 +1,4 @@
-b<!doctype html>
+<!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -26,7 +26,7 @@ b<!doctype html>
         <link rel="stylesheet" href="css/custom.css.scss">
 
         <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-        
+
         <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/p5.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.8/addons/p5.dom.js"></script>
         <script type="text/javascript">
@@ -77,9 +77,9 @@ b<!doctype html>
         function showData(result) {
 
           // when the server returns, show the result in the div:
-         // var json_data = JSON.parse(result.data); 
+         // var json_data = JSON.parse(result.data);
          // text.html("Sensor reading:" + json_data.data);
-         if (interval_index < (num_images-1)){ 
+         if (interval_index < (num_images-1)){
           var values = result.data.split(',');
          // interval_index = values[1];
 
@@ -100,7 +100,7 @@ b<!doctype html>
           document.getElementById("img").src=images[max_index];
 
          }
-         
+
         }
       </script>
     </head>
@@ -120,6 +120,7 @@ b<!doctype html>
     <div id="intro" class="jumbotron center">
       <div class="container">
         <h1>THE FORCE AWAKENS ;)</h1>
+        <img src="http://i.imgur.com/DqpatFl.jpg" alt="I heard Kylo Ren has an 8-pack." style="width:400px;height:650px;">
         <p>Which STAR WARS character should be your next Tinder date? Find out here.</p>
         <p><a class="btn btn-primary btn-lg" href="#" onclick=to_slideshow() role="button">START</a></p>
       </div>
@@ -128,7 +129,7 @@ b<!doctype html>
    <!-- SLIDESHOW (initially hidden) -->
    <div id="slideshow" class="container center" style="display: none;">
       <!--slidshow-->
-      <img id="img" src="Rey3.jpg"> 
+      <img id="img" src="Rey3.jpg">
       <p><a class="btn btn-primary btn-lg" href="#" onclick=to_start() role="button">BACK TO START</a></p>
    </div>
 
