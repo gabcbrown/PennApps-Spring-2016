@@ -87,7 +87,7 @@ function sendSerialData(data) {
   //console.log('to the terminal: ' + Number(data));
   console.log("Full array: " + updating_array + "\n");
 
-  if (updating_array.length == 4){
+  if (updating_array.length == 3){
       // update
       console.log("Full array: " + updating_array + "\n");
       reset();

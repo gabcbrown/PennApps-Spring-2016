@@ -103,6 +103,10 @@
           interval_index = values[1];
           var max_index = values[0];
 
+          if (max_index == 8){
+            max_index = Math.floor((Math.random() * 7) + 1);
+          }
+
           document.getElementById("img").src=images[max_index];
           document.getElementById("winner_text").innerHTML = "Your best match is " + image_names[max_index] + "!";
           document.getElementById("winner_text").style.display='block';
@@ -138,8 +142,8 @@
    <!-- SLIDESHOW (initially hidden) -->
    <div id="slideshow" class="container center" style="display: none;">
       <!--slidshow-->
-      <img id="img" src="Rey3.jpg" style="width:300px;height:auto;">
-      <p id="winner_text">  </p>
+      <img id="img" src="Rey3.jpg" style="width:500px;height:auto;">
+      <h1 id="winner_text">  </h1>
    </div>
 
    <!-- I DONT KNOW WHAT THIS IS -->
